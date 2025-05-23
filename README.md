@@ -6,13 +6,13 @@
 
 ---
 
-# 🌾 PROJETO FASE 6 – O COMEÇO DA REDE NEURAL - FarmTech Solutions
+# 🌱 FarmTech Solutions – Sistema de Gestão Agrícola Inteligente
 
 ## Nome do projeto
-Fase 6 - Cap 1 - FarmTech, Despertar da rede neural
+Fase 7 - Cap 1 - A consolidação de um sistema
 
 ## Nome do grupo
-Grupo 31
+Grupo 42
 
 ## 👨‍🎓 Integrantes:
 - [Ana Beatriz Duarte Domingues](https://www.linkedin.com/in/)
@@ -27,83 +27,118 @@ Grupo 31
 
 ---
 
-## 📚 Estrutura de Pastas
+## 📜 Descrição
 
+Este projeto integra diversas soluções tecnológicas desenvolvidas ao longo das Fases 1 a 6, consolidando tudo em uma dashboard interativa feita com Python e Streamlit. O objetivo é oferecer um sistema inteligente para monitoramento e gestão de uma fazenda automatizada, utilizando sensores IoT, análise de dados, modelos de Machine Learning e notificações automatizadas por e-mail via AWS.
+
+---
+
+## 📁 Estrutura de pastas
+
+Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
+
+- <b>.github</b>: Nesta pasta ficarão os arquivos de configuração específicos do GitHub que ajudam a gerenciar e automatizar processos no repositório.
+
+- <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
+
+- <b>config</b>: Posicione aqui arquivos de configuração que são usados para definir parâmetros e ajustes do projeto.
+
+- <b>document</b>: aqui estão todos os documentos do projeto que as atividades poderão pedir. Na subpasta "other", adicione documentos complementares e menos importantes.
+
+- <b>scripts</b>: Posicione aqui scripts auxiliares para tarefas específicas do seu projeto. Exemplo: deploy, migrações de banco de dados, backups.
+
+- <b>src</b>: Todo o código fonte criado para o desenvolvimento do projeto ao longo das 7 fases.
+
+- <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+
+---
+
+## 🔁 Fases Integradas
+
+### ✅ Fase 1 – Base de Dados Inicial
+- Cálculo da área de plantio e insumos.
+- Conexão com API meteorológica.
+- Análise estatística com R.
+- Base de dados para uso futuro.
+
+### ✅ Fase 2 – Banco de Dados Estruturado
+- Modelagem MER/DER.
+- Banco relacional preparado para os dados de sensores e análises futuras.
+
+### ✅ Fase 3 – IoT e Automação Inteligente
+- Simulação no Wokwi com ESP32 + sensores:
+  - DHT22 (umidade/temperatura)
+  - HC-SR04 (nível de água)
+  - LDR (simula pH)
+  - PIR (movimento)
+- Controle automático da irrigação.
+- Integração com banco de dados.
+
+### ✅ Fase 4 – Dashboard Interativa com Data Science
+- Dashboard em **Streamlit**:
+  - Visualização de sensores em tempo real.
+  - Análises de produtividade.
+  - Modelos preditivos com Scikit-Learn.
+- LCD + Serial Plotter no ESP32.
+
+### ✅ Fase 5 – Cloud Computing & Segurança
+- Hospedagem na **AWS**.
+- Segurança baseada nas normas **ISO 27001 e 27002**.
+
+### ✅ Fase 6 – Visão Computacional com YOLO
+- Detecção de objetos via YOLO.
+- Resultado integrado à dashboard.
+
+---
+
+## 🧠 Fase 7 – Integração Geral
+
+Nesta fase final, todas as soluções desenvolvidas ao longo das fases anteriores foram integradas em uma dashboard interativa construída com **Python e Streamlit**.
+
+A aplicação permite que o usuário:
+- Visualize em tempo real os dados coletados pelos sensores simulados no Wokwi.
+- Consulte o banco de dados com registros históricos de umidade, temperatura, luminosidade e presença.
+- Execute o modelo de Machine Learning treinado para prever o rendimento da safra com base nas condições ambientais.
+- Receba uma mensagem por **e-mail (AWS SES)** ou **SMS (AWS SNS)** com o resultado da predição ou alertas personalizados.
+
+Tudo isso pode ser feito por meio de botões e interações simples na interface gráfica, facilitando o uso mesmo para pessoas sem conhecimento técnico.
+
+
+#### 📸 Prints do alerta AWS:
+
+![Alerta AWS 1](./imgs/alerta_aws_1.png)  
+![Alerta AWS 2](./imgs/alerta_aws_2.png)
+
+
+---
+
+## 🎥 Demonstração em Vídeo
+
+📺 Link do vídeo:  
+👉 [https://youtu.be/LINK-AQUI](https://youtu.be/LINK-AQUI)
+
+---
+
+## 👨‍💻 Como Executar
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/Jr-RS/fase7_cap1_FarmTech.git
+cd fase7_cap1_FarmTech
 ```
-bash
-FarmTech_Vision/
-├── assets/
-│   ├── logo-fiap.png/
-├── data/
-│   ├── train/
-│   │    ├── arquivos de texto...
-│   │    └── imagens...
-│   ├── val/
-│   │    ├── arquivos de texto...
-│   │    └── imagens...
-│   └── test/
-│   │    ├── arquivos de texto...
-│   │    └── imagens...
-│   └── data.yaml
-├── JuniorSilva559451_fase6.ipynb
-├── JuniorSilva559451_fase6_entrega2.ipynb
-├── LinkApresentacao.txt
-└── README.md
+2. Instale as dependências:
+```bash
+pip install -r requirements.txt
 ```
-
----
-## ✅ Entrega 1
-### 📝 Descrição
-
-O projeto desenvolvido simula a implantação de um sistema de visão computacional utilizando YOLOv5, para a identificação de dois tipos de objetos distintos: **alface** e **maçã**.
-
-O objetivo é demonstrar ao cliente da FarmTech Solutions o funcionamento, a acurácia e o potencial da tecnologia de visão computacional aplicada.
-
-- Foram utilizadas 80 imagens divididas igualmente entre os dois objetos.
-- As imagens foram rotuladas usando a plataforma Make Sense IA.
-- A divisão dos dados foi feita em 32 imagens para treino, 4 para validação e 4 para teste por classe.
-- As imagens e os arquivos de texto utilizados no treinamento foram salvos no Google Drive.
-- Três treinos foram realizados com quantidades diferentes de épocas (30, 45 e 60), analisando os impactos nos resultados.
-
-
-#### 📌 Acesse o Notebook no Google Colab:  
-[📖 Abrir no Google Colab](https://colab.research.google.com/github/Jr-RS/fase6_cap1_FarmTech/blob/main/JuniorSilva559451_fase6.ipynb)
-
-
-### 🎥 Vídeo Demonstrativo
-- O vídeo demonstrativo da entrega 1 do projeto está disponível no YouTube:
-[Assista aqui](https://youtu.be/kiQd7i4DL4E) 
-
----
-
----
-## ✅ Entrega 2
-### 📝 Descrição
-
-Nesta segunda etapa, realizamos uma comparação entre diferentes abordagens de visão computacional para o problema de identificação de objetos (alface e maçã), visando encontrar a solução mais adequada para o cliente FarmTech Solutions.
-
-Foram aplicadas as seguintes estratégias:
-- **YOLO Customizada**: Utilizando o modelo treinado na Entrega 1, adaptado ao nosso conjunto de dados.
-- **YOLO Padrão (pré-treinada no COCO)**: Aplicação do modelo YOLOv5s pré-treinado, sem ajustes específicos para a base da FarmTech.
-- **CNN Desenvolvida do Zero**: Construção de uma rede convolucional simples para classificar as imagens em duas categorias.
-
-Cada abordagem foi avaliada considerando:
-- Facilidade de uso e integração;
-- Precisão do modelo;
-- Tempo de treinamento;
-- Tempo de inferência.
-
-Foi constatado que a **YOLO customizada** apresentou o melhor equilíbrio entre precisão, velocidade e aplicabilidade ao cenário da FarmTech Solutions.
-
-#### 📌 Acesse o Notebook da Entrega 2 no Google Colab:
-[📖 Abrir no Google Colab](https://colab.research.google.com/github/Jr-RS/fase6_cap1_FarmTech/blob/main/JuniorSilva559451_fase6_entrega2.ipynb)
-
----
+3. Execute a dashboard:
+```bash
+streamlit run app.py
+```
 
 ## 📚 Histórico de Lançamentos
 
-* 0.1.0 - 24/04/2025
-    * Primeira versão do projeto de deep learning com yolo.
+* 0.1.0 - 20/05/2025
+    * Primeira versão do projeto 
 
 ---
 
