@@ -2,7 +2,6 @@ import os
 import sys
 from PIL import Image
 import streamlit as st
-#from datetime import datetime
 
 st.set_page_config(page_title="Sistema Agronegócio", layout="wide")
 
@@ -32,9 +31,48 @@ if fase == "🏠 Visão Geral":
     st.markdown("Use o menu lateral à esquerda para acessar os módulos.")
 
 elif fase == "🌱 Fase 1 - Cálculo de Área e Meteorologia":
-    st.subheader("🌱 Fase 1 - Cálculo de Área e Meteorologia")
-    st.button("Executar cálculo de área")
-    st.button("Consultar previsão do tempo")
+    import sys
+    sys.path.append("data/fase1")
+    from script import calcular_area_melancias, calcular_area_eucalipto
+    from previsao import obter_previsao
+
+    st.subheader("🌱 Cálculo de Área e Insumos")
+
+    cultura = st.selectbox("Selecione a cultura", ["Melancia", "Eucalipto"])
+
+    if cultura == "Melancia":
+        comprimento = st.number_input("Comprimento (m)", min_value=1.0)
+        largura = st.number_input("Largura (m)", min_value=1.0)
+        if st.button("Calcular"):
+            r = calcular_area_melancias(comprimento, largura)
+            st.metric("Área Total", f"{r['area_total']:.2f} m²")
+            st.metric("Área Utilizável", f"{r['area_utilizavel']:.2f} m²")
+            st.metric("Nº de Mudas", f"{r['numero_mudas']:.0f}")
+            st.metric("Fertilizante", f"{r['total_fertilizante']:.2f} kg")
+            st.metric("Controle de Pragas", f"{r['total_pragas']:.2f} L")
+
+    elif cultura == "Eucalipto":
+        largura = st.number_input("Largura (m)", min_value=1.0)
+        altura = st.number_input("Comprimento (m)", min_value=1.0)
+        if st.button("Calcular"):
+            r = calcular_area_eucalipto(largura, altura)
+            st.metric("Área Total", f"{r['area_total']:.2f} m²")
+            st.metric("Área Utilizável", f"{r['area_utilizavel']:.2f} m²")
+            st.metric("Nº de Mudas", f"{r['numero_mudas']:.0f}")
+            st.metric("Fertilizante", f"{r['total_fertilizante']:.2f} kg")
+            st.metric("Controle de Pragas", f"{r['total_pragas']:.2f} L")
+
+    st.divider()
+    st.subheader("☁️ Previsão do Tempo")
+    cidade = st.text_input("Informe a cidade para previsão do tempo", value="Sao Paulo,BR")
+
+    if st.button("Consultar previsão"):
+        clima = obter_previsao(cidade)
+        if clima:
+            st.success(f"Temperatura: {clima['temperatura']}°C | Sensação: {clima['sensacao']}°C | Umidade: {clima['umidade']}%")
+        else:
+            st.error("Erro ao obter previsão do tempo.")
+
 
 elif fase == "🏢 Fase 2 - Gestão do Agronegócio":
     sys.path.append("data/fase2")
@@ -149,7 +187,6 @@ elif fase == "💧 Fase 3 - IoT e Sensores":
         )
 
 
-
 elif fase == "📊 Fase 4 - Dashboard e ML":
     st.subheader("📊 Fase 4 – Dashboard e Machine Learning")
 
@@ -223,6 +260,48 @@ elif fase == "☁️ Fase 5 - Cloud e Alerta AWS":
 
     Essas medidas forneceram uma base confiável para a continuidade e crescimento sustentável da empresa.
     """)
+
+    import sys
+    sys.path.append("data/fase5")
+    from inferencia import prever
+
+    # Mapeamento necessário para conversão da variável categórica
+    culturas = {
+        "Cocoa, beans": 1,
+        "Oil palm fruit": 2,
+        "Rice, paddy": 3,
+        "Rubber, natural": 4
+    }
+
+    st.subheader("☁️ Previsão de Anomalias com AWS")
+    st.markdown("Essas medidas forneceram uma base confiável para a continuidade e crescimento sustentável da empresa.")
+
+    col1, col2 = st.columns(2)
+    with col1:
+        temperatura = st.number_input("🌡️ Temperature (°C)", value=25.0)
+        precipitacao = st.number_input("🌧️ Precipitation (mm)", value=2.0)
+        crop = st.selectbox("🌱 Crop", list(culturas.keys()))
+
+    with col2:
+        umidade_relativa = st.number_input("💧 Relative Humidity (%)", value=60.0)
+        umidade_especifica = st.number_input("💦 Specific Humidity", value=0.01)
+
+    if st.button("🔍 Executar Inferência"):
+        entrada = {
+            "Crop": culturas[crop],  # converter string em valor numérico
+            "Precipitation": precipitacao,
+            "SpecificHumidity": umidade_especifica,
+            "RelativeHumidity": umidade_relativa,
+            "Temperature": temperatura
+        }
+
+        try:
+            resultado = prever(entrada)
+            st.success(f"Resultado da inferência: {resultado:.2f} toneladas/hectare")
+        except Exception as e:
+            st.error(f"Erro durante a inferência: {e}")
+
+
 
     st.markdown("### 🔗 Acesso aos recursos do projeto")
 
