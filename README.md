@@ -33,23 +33,13 @@ Este projeto integra diversas soluções tecnológicas desenvolvidas ao longo da
 
 ---
 
-## 📁 Estrutura de pastas
+### 📁 Estrutura de Pastas
 
-Dentre os arquivos e pastas presentes na raiz do projeto, definem-se:
-
-- <b>.github</b>: Nesta pasta ficarão os arquivos de configuração específicos do GitHub que ajudam a gerenciar e automatizar processos no repositório.
-
-- <b>assets</b>: aqui estão os arquivos relacionados a elementos não-estruturados deste repositório, como imagens.
-
-- <b>config</b>: Posicione aqui arquivos de configuração que são usados para definir parâmetros e ajustes do projeto.
-
-- <b>document</b>: aqui estão todos os documentos do projeto que as atividades poderão pedir. Na subpasta "other", adicione documentos complementares e menos importantes.
-
-- <b>scripts</b>: Posicione aqui scripts auxiliares para tarefas específicas do seu projeto. Exemplo: deploy, migrações de banco de dados, backups.
-
-- <b>src</b>: Todo o código fonte criado para o desenvolvimento do projeto ao longo das 7 fases.
-
-- <b>README.md</b>: arquivo que serve como guia e explicação geral sobre o projeto (o mesmo que você está lendo agora).
+- **`dashboard.py`**: Script principal que integra as funcionalidades desenvolvidas nas fases anteriores.  
+- **`data/`**: Diretório contendo dados relevantes para o funcionamento do sistema.  
+- **`assets/`**: Pasta destinada a armazenar recursos como imagens e outros arquivos auxiliares.  
+- **`relatorio.csv`**: Arquivo que contém registros ou resultados das análises realizadas.  
+- **`README.md`**: Documento que descreve o projeto, seus objetivos e instruções de uso.
 
 ---
 
@@ -102,12 +92,6 @@ A aplicação permite que o usuário:
 - Receba uma mensagem por **e-mail (AWS SES)** ou **SMS (AWS SNS)** com o resultado da predição ou alertas personalizados.
 
 Tudo isso pode ser feito por meio de botões e interações simples na interface gráfica, facilitando o uso mesmo para pessoas sem conhecimento técnico.
-
-
-#### 📸 Prints do alerta AWS:
-
-![Alerta AWS 1](./imgs/alerta_aws_1.png)  
-![Alerta AWS 2](./imgs/alerta_aws_2.png)
 
 
 ---
